@@ -1,9 +1,12 @@
 import express from 'express';
+import ProductController from './controllers/ProductsController';
+
+const productController = new ProductController();
 
 const app = express();
 
 app.use(express.json());
 
-export default app;
+app.post('/products', productController.createProduct);
 
-// Initial commit
+export default app;
