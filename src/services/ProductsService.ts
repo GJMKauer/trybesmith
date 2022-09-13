@@ -11,6 +11,13 @@ class ProductsService {
 
   public async createProduct(name: string, amount: string): Promise<IProduct> {
     const result = await this.model.createProduct(name, amount);
+
+    return result;
+  }
+
+  public async getAllProducts(): Promise<IProduct[]> {
+    const result = await this.model.getAllProducts();
+    
     return result;
   }
 }
