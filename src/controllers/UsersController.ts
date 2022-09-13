@@ -11,6 +11,13 @@ class UsersController {
     const token = await this.usersService.createUser(username, classe, level, password);
     return res.status(StatusCodes.CREATED).json({ token });
   };
+
+  public login = async (req: Request, res: Response) => {
+    const { username, password } = req.body;
+
+    const token = await this.usersService.login(username, password);
+    return res.status(StatusCodes.OK).json({ token });
+  };
 }
 
 export default UsersController;

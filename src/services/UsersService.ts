@@ -30,6 +30,17 @@ class UsersService {
 
     return { token };
   }
+
+  public async login(username: string, password: string): Promise<IToken> {
+    const result = await this.model.login(username, password);
+    const token = Jwt.sign(
+      { id: result.id },
+      JWT_SECRET,
+      { algorithm: 'HS256', expiresIn: '1d' },
+    );
+
+    return { token };
+  }
 }
 
 export default UsersService;

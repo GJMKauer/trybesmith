@@ -22,6 +22,13 @@ class UsersModel {
     const { insertId } = data;
     return { id: insertId, username, classe, level, password };
   }
+
+  public async login(username: string, password: string): Promise<IUser> {
+    const [result] = await this.connection.execute<ResultSetHeader>(`SELECT *
+        FROM Trybesmith.Users WHERE username = ? AND password = ?`, [username, password]);
+    
+    return result as unknown as IUser;
+  }
 }
 
 export default UsersModel;
