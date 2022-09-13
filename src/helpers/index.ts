@@ -18,6 +18,27 @@ const invalidAmount = '"amount" must be a string';
 
 const shortAmount = '"amount" length must be at least 3 characters long';
 
+// User Creation
+const invalidUsername = '"username" must be a string';
+
+const shortUsername = '"username" length must be at least 3 characters long';
+
+const invalidPassword = '"password" must be a string';
+
+const shortPassword = '"password" length must be at least 8 characters long';
+
+const nullClasse = '"classe" is required';
+
+const invalidClasse = '"classe" must be a string';
+
+const shortClasse = '"classe" length must be at least 3 characters long';
+
+const nullLevel = '"level" is required';
+
+const invalidLevel = '"level" must be a number';
+
+const lowLevel = '"level" must be greater than or equal to 1';
+
 export {
   nullUsername,
   nullPassword,
@@ -28,4 +49,14 @@ export {
   nullAmount,
   invalidAmount,
   shortAmount,
+  invalidUsername,
+  shortUsername,
+  invalidPassword,
+  shortPassword,
+  nullClasse,
+  invalidClasse,
+  shortClasse,
+  nullLevel,
+  invalidLevel,
+  lowLevel,
 };
