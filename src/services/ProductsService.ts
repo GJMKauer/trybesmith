@@ -1,12 +1,12 @@
 import connection from '../models/connection';
-import ProductModel from '../models/ProductsModel';
+import ProductsModel from '../models/ProductsModel';
 import IProduct from '../interfaces/ProductInterface';
 
 class ProductsService {
-  public model: ProductModel;
+  public model: ProductsModel;
 
   constructor() {
-    this.model = new ProductModel(connection);
+    this.model = new ProductsModel(connection);
   }
 
   public async createProduct(name: string, amount: string): Promise<IProduct> {
