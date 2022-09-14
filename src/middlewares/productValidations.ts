@@ -1,8 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import connection from '../models/connection';
-import ProductsService from '../services/ProductsService';
-import ProductsModel from '../models/ProductsModel';
 import {
   nullName,
   invalidName,
@@ -13,12 +10,6 @@ import {
 } from '../helpers';
 
 class ProductValidation {
-  public model: ProductsModel;
-
-  constructor(private usersService = new ProductsService()) {
-    this.model = new ProductsModel(connection);
-  }
-
   public createProductNameV = async (req: Request, res: Response, next: NextFunction) => {
     const { name } = req.body;
 

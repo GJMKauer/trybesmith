@@ -1,3 +1,10 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// JWT Secret
+const JWT_SECRET = process.env.JWT_SECRET || 'heyisma';
+
 // User Login
 const nullUsername = '"username" is required';
 
@@ -39,7 +46,22 @@ const invalidLevel = '"level" must be a number';
 
 const lowLevel = '"level" must be greater than or equal to 1';
 
+// Token Validation
+
+const notFoundToken = 'Token not found';
+
+const invalidToken = 'Invalid token';
+
+// Order Validation
+
+const nullProductsIds = '"productsIds" is required';
+
+const invalidProductsIds = '"productsIds" must be an array';
+
+const shortProductsIds = '"productsIds" must include only numbers';
+
 export {
+  JWT_SECRET,
   nullUsername,
   nullPassword,
   invalidData,
@@ -59,4 +81,9 @@ export {
   nullLevel,
   invalidLevel,
   lowLevel,
+  notFoundToken,
+  invalidToken,
+  nullProductsIds,
+  invalidProductsIds,
+  shortProductsIds,
 };

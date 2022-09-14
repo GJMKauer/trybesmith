@@ -1,8 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import connection from '../models/connection';
-import ProductsService from '../services/ProductsService';
-import ProductsModel from '../models/ProductsModel';
 import {
   invalidClasse,
   invalidLevel,
@@ -18,12 +15,6 @@ import {
   shortUsername } from '../helpers';
 
 class UserValidation {
-  public model: ProductsModel;
-
-  constructor(private usersService = new ProductsService()) {
-    this.model = new ProductsModel(connection);
-  }
-
   public createUserUsernameV = async (req: Request, res: Response, next: NextFunction) => {
     const { username } = req.body;
 

@@ -14,6 +14,12 @@ class OrdersService {
     
     return result;
   }
+
+  public async createOrder(productsIds: Array<number>, userId: number): Promise<IOrder> {
+    const result = await this.model.createOrderTwo(productsIds, userId);
+
+    return result;
+  }
 }
 
 export default OrdersService;

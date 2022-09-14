@@ -1,18 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import connection from '../models/connection';
-import UsersService from '../services/UsersService';
 import UsersModel from '../models/UsersModel';
 import { nullUsername, nullPassword, invalidData } from '../helpers';
 
 class LoginValidation {
   public model: UsersModel;
 
-  constructor(private usersService = new UsersService()) {
+  constructor() {
     this.model = new UsersModel(connection);
   }
 
-  public login = async (req: Request, res: Response, next: NextFunction) => {
+  public loginV = async (req: Request, res: Response, next: NextFunction) => {
     const { username, password } = req.body;
 
     if (!username) {
@@ -25,7 +24,7 @@ class LoginValidation {
 
     const findUser = await this.model.login(username, password);
 
-    if (!findUser.length) {
+    if (!findUser) {
       return res.status(StatusCodes.UNAUTHORIZED).json({ message: invalidData });
     }
 
