@@ -25,9 +25,9 @@ class OrdersModel {
     return result as IOrder[];
   }
 
-  public async createOrder(productsIds: Array<number>, userId: number) {
+  public async createOrderAndUpdateProducts(productsIds: Array<number>, userId: number) {
     const [result] = await this.connection.execute<ResultSetHeader>(`
-        INSERT INTO Trybesmith.Orders (id, userId) VALUES (default, ?)
+      INSERT INTO Trybesmith.Orders (id, userId) VALUES (default, ?)
     `, [userId]);
     const { insertId } = result;
 
@@ -41,8 +41,8 @@ class OrdersModel {
     }));
   }
 
-  public async createOrderTwo(productsIds: Array<number>, userId: number): Promise<IOrder> {
-    await this.createOrder(productsIds, userId);
+  public async createOrderReturn(productsIds: Array<number>, userId: number): Promise<IOrder> {
+    await this.createOrderAndUpdateProducts(productsIds, userId);
 
     const [result] = await this.connection.execute(`
     SELECT

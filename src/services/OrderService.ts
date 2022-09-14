@@ -16,7 +16,7 @@ class OrdersService {
   }
 
   public async createOrder(productsIds: Array<number>, userId: number): Promise<IOrder> {
-    const result = await this.model.createOrderTwo(productsIds, userId);
+    const result = await this.model.createOrderReturn(productsIds, userId);
 
     return result;
   }
