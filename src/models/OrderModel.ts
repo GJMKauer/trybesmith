@@ -44,18 +44,17 @@ class OrdersModel {
   public async createOrderReturn(productsIds: Array<number>, userId: number): Promise<IOrder> {
     await this.createOrderAndUpdateProducts(productsIds, userId);
 
-    const [result] = await this.connection.execute(`
+    const [result] = await this.connection.query(`
     SELECT
         o.userId, JSON_ARRAYAGG(p.id) AS productsIds
       FROM
         Trybesmith.Orders as o
           INNER JOIN 
         Trybesmith.Products AS p
-      WHERE o.userId = ? AND p.id IN (?, ?)
+      WHERE o.userId = ? AND p.id IN (?)
       GROUP BY o.id
       ORDER BY o.userId
-  `, [userId, 6, 7]); // No momento está hardcoded -> precisa alterar.
-    console.log('RESULTADO DA MODEL', result);
+  `, [userId, productsIds]);
 
     return (result as RowDataPacket[])[0] as IOrder;
   }
